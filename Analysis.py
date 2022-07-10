@@ -8,8 +8,8 @@ from matplotlib.axis import Axis
 
 from pandas import json_normalize, DataFrame
 
-from Club import Club
-from Metric import Metric
+from utilities.Club import Club
+from utilities.Metric import Metric
 
 
 club = Club.DRIVER
@@ -49,18 +49,18 @@ df['shotTime'] = pd.to_datetime(df['shotTime'])
 df['date'] = df['shotTime'].dt.date
 
 # Converting Distance Meter to Yard
-converte_m_to_yd = 1.093613298
-df['carryDistance'] = df['carryDistance'].apply(lambda x: x * converte_m_to_yd)
-df['carryDeviationDistance'] = df['carryDeviationDistance'].apply(lambda x: x * converte_m_to_yd)
+convert_m_to_yd = 1.093613298
+df['carryDistance'] = df['carryDistance'].apply(lambda x: x * convert_m_to_yd)
+df['carryDeviationDistance'] = df['carryDeviationDistance'].apply(lambda x: x * convert_m_to_yd)
 
 # Converting Distance Yard to Feet
-# converte_yd_to_m = 3
-# df['apexHeight'] = df['apexHeight'].apply(lambda x: x * converte_yd_to_m)
+# convert_yd_to_m = 3
+# df['apexHeight'] = df['apexHeight'].apply(lambda x: x * convert_yd_to_m)
 
 # Converting Speed from m/s to mil/hr
-converte_m_per_s_to_mil_per_hr = 2.236936292
-df['clubHeadSpeed'] = df['clubHeadSpeed'].apply(lambda x: x * converte_m_per_s_to_mil_per_hr)
-df['ballSpeed'] = df['ballSpeed'].apply(lambda x: x * converte_m_per_s_to_mil_per_hr)
+convert_m_per_s_to_mil_per_hr = 2.236936292
+df['clubHeadSpeed'] = df['clubHeadSpeed'].apply(lambda x: x * convert_m_per_s_to_mil_per_hr)
+df['ballSpeed'] = df['ballSpeed'].apply(lambda x: x * convert_m_per_s_to_mil_per_hr)
 
 # Adding Golf Metric
 df['backSpin'] = df['spinRate'] * np.cos(np.deg2rad(df['spinAxis']))
